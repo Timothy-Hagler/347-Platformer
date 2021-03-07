@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
 {
 
     public int currentCoins;
+    public int currentStars;
 
     public Text coinText;
+    public Text starText;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +29,11 @@ public class GameManager : MonoBehaviour
     {
         currentCoins += coinToAdd;
         coinText.text = "Coins: " + currentCoins;
+    }
+
+    public void AddStar(int starToAdd)
+    {
+        currentStars += starToAdd;
+        starText.text = "Stars: " + currentStars;
     }
 }
