@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDirection;
     public float gravityScale;
+    public float gravity;
+
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    bool isGrounded;
 
     public float knockbackForce;
     public float knockbackTime;
@@ -23,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public DoubleJump doubleJump;
     public WallClimb wallClimb;
     public BallRoll ballRoll;
+
+    Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
@@ -41,31 +49,56 @@ public class PlayerController : MonoBehaviour
     {
         if (knockbackCounter <= 0)
         {
-            float yStore = moveDirection.y;
-            moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-            moveDirection = moveDirection.normalized * moveSpeed;
-            moveDirection.y = yStore;
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-            if (controller.isGrounded)// || jumpCount < 2)
+            if (isGrounded && velocity.y < 0)
             {
-                moveDirection.y = 0f;
-                if (Input.GetButtonDown("Jump"))// && jumpCount < 2)
-                {
-                    moveDirection.y = jumpForce;
-                    jumpCount++;
-                }
+                velocity.y = -2f;
+                jumpCount = 0;
             }
 
-           /* if (controller.isGrounded && jumpCount >= 2)
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            moveDirection = (transform.forward * z) + (transform.right * x);
+            
+
+            controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+
+            
+
+            /*if (controller.isGrounded && velocity.y < 0)// || jumpCount < 2)
             {
-                jumpCount = 0;
+                velocity.y = -2f;
+                //moveDirection.y = 0f;
+                if (Input.GetButtonDown("Jump"))// && jumpCount < 2)
+                {
+                    
+                    // moveDirection.y = jumpForce;
+                    //jumpCount++;
+                }
             }*/
+
+            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && doubleJump.doubleJumpActive)))
+            {
+                velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                jumpCount++;
+            }
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+            /* if (controller.isGrounded && jumpCount >= 2)
+             {
+                 jumpCount = 0;
+             }*/
         }
         else
         {
             knockbackCounter -= Time.deltaTime;
         }
-        moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale);// * Time.deltaTime);// ;
+        moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);// ;
 
         controller.Move(moveDirection * Time.deltaTime);
 

@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  coinSound: {fileID: -4134929732652384510}
 --- !u!82 &-4134929732652384510
 AudioSource:
   m_ObjectHideFlags: 0

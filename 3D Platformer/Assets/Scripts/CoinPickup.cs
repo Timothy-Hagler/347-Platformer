@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
@@ -17,6 +18,7 @@ public class CoinPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(0, 90 * Time.deltaTime, 0);
         
     }
 
