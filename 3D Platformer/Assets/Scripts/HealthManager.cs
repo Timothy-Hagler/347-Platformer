@@ -20,6 +20,8 @@ public class HealthManager : MonoBehaviour
     public float respawnLength;
 
     public PlayerController player;
+
+    public GameManager gm;
     void Start()
     {
         currentHealth = maxHealth;
@@ -52,10 +54,11 @@ public class HealthManager : MonoBehaviour
 
     public void HurtPlayer(int damage, Vector3 direction)
     {
+        gm.changeHealth();
         if (invincibilityCounter <= 0)
         {
             currentHealth -= damage;
-
+            gm.changeHealth();
             if (currentHealth <= 0)
             {
                 Respawn();

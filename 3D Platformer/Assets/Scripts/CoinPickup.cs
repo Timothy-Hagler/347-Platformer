@@ -6,11 +6,12 @@ public class CoinPickup : MonoBehaviour
 {
 
     public int value;
+    public AudioSource coinSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        coinSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +25,8 @@ public class CoinPickup : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<GameManager>().AddCoin(value);
+            coinSound.Play();
+            
 
             Destroy(gameObject);
         }    

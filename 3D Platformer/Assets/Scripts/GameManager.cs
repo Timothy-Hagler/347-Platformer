@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour
 
     public int currentCoins;
     public int currentStars;
+    public int totalStars;
 
     public Text coinText;
     public Text starText;
+    public Text healthText;
+
+    public HealthManager health;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,18 @@ public class GameManager : MonoBehaviour
     public void AddStar(int starToAdd)
     {
         currentStars += starToAdd;
+        totalStars += starToAdd;
         starText.text = "Stars: " + currentStars;
+    }
+
+    public void removeStar(int starToRemove)
+    {
+        currentStars -= starToRemove;
+        starText.text = "Stars: " + currentStars;
+    }
+
+    public void changeHealth()
+    {
+        healthText.text = "Health " + health.currentHealth;
     }
 }
