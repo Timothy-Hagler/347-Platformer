@@ -30,11 +30,11 @@ public class DoubleJump : MonoBehaviour
 
     public void doubleJump()
     {
-        if (doubleJumpActive)
+       /* if (doubleJumpActive)
         {
             player.jumpForce = 35;
         }
         else
-            player.jumpForce = 25;
+            player.jumpForce = 25;*/
     }
 }
