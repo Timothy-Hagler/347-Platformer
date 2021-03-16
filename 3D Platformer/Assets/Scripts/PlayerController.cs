@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     Vector3 velocity;
 
+    public AudioManager sounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         doubleJump = FindObjectOfType<DoubleJump>();
         wallClimb = FindObjectOfType<WallClimb>();
         ballRoll = FindObjectOfType<BallRoll>();
+        sounds = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -65,34 +68,16 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 
-
-            
-
-            /*if (controller.isGrounded && velocity.y < 0)// || jumpCount < 2)
-            {
-                velocity.y = -2f;
-                //moveDirection.y = 0f;
-                if (Input.GetButtonDown("Jump"))// && jumpCount < 2)
-                {
-                    
-                    // moveDirection.y = jumpForce;
-                    //jumpCount++;
-                }
-            }*/
-
             if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && doubleJump.doubleJumpActive)))
             {
                 velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
                 jumpCount++;
+                sounds.Play("Jump");
             }
 
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
-
-            /* if (controller.isGrounded && jumpCount >= 2)
-             {
-                 jumpCount = 0;
-             }*/
+     
         }
         else
         {
@@ -114,9 +99,6 @@ public class PlayerController : MonoBehaviour
     public void KnockBack(Vector3 direction)
     {
         knockbackCounter = knockbackTime;
-
-        
-
         moveDirection = direction * knockbackForce;
         moveDirection.y = knockbackForce;
     }

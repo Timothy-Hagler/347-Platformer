@@ -24,6 +24,7 @@ public class StarPickup : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<GameManager>().AddStar(value);
+            FindObjectOfType<AudioManager>().Play("Star");
 
             Destroy(gameObject);
         }

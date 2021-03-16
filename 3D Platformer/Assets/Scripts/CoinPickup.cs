@@ -27,8 +27,9 @@ public class CoinPickup : MonoBehaviour
         if (other.tag == "Player")
         {
             FindObjectOfType<GameManager>().AddCoin(value);
-            coinSound.Play();
-            
+            //coinSound.Play();
+
+            FindObjectOfType<AudioManager>().Play("Coin");
 
             Destroy(gameObject);
         }    
