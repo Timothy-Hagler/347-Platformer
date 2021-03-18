@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
+    public Transform ceilingCheck;
+    public float ceilingDistance = 0.4f;
+    //public LayerMask groundMask;
+    bool isOnCeiling;
+
     public float knockbackForce;
     public float knockbackTime;
     private float knockbackCounter;
@@ -50,6 +55,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        /*isOnCeiling = Physics.CheckSphere(ceilingCheck.position, ceilingDistance);
+        if (isOnCeiling)
+        {
+            gravity = -100f;
+        }*/
+
         if (knockbackCounter <= 0)
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -83,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             knockbackCounter -= Time.deltaTime;
         }
-        moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);// ;
+        moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);
 
         controller.Move(moveDirection * Time.deltaTime);
 
