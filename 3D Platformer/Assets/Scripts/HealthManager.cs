@@ -66,7 +66,7 @@ public class HealthManager : MonoBehaviour
             }
             else
             {
-                player.KnockBack(direction);
+                player.KnockBack(direction * 2);
 
                 invincibilityCounter = invincibilityLength;
 
@@ -80,6 +80,7 @@ public class HealthManager : MonoBehaviour
     public void HealPlayer(int healAmount)
     {
         currentHealth += healAmount;
+        gm.changeHealth();
 
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
@@ -87,7 +88,7 @@ public class HealthManager : MonoBehaviour
 
     public void Respawn()
     {
-        //player.transform.position = respawnPoint;
+        player.transform.position = respawnPoint;
 
         //currentHealth = maxHealth;
         if (!isRespawning)
@@ -99,7 +100,7 @@ public class HealthManager : MonoBehaviour
     public IEnumerator RespawnCo()
     {
         isRespawning = true;
-
+        
         player.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(respawnLength);
@@ -112,5 +113,10 @@ public class HealthManager : MonoBehaviour
         invincibilityCounter = invincibilityLength;
         playerRenderer.enabled = false;
         flashCounter = flashLength;
+    }
+
+    public void SetSpawnPoint(Vector3 newPosition)
+    {
+        respawnPoint = newPosition;
     }
 }

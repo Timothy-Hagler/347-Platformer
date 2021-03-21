@@ -8,16 +8,20 @@ public class Timer : MonoBehaviour
     public float totalTime;
     public float timeRemaining;
     public string methodToCall;
+    public string typeOfTimer;
 
-    public GameObject[] items;
-    public Transform[] itemTransforms;
+    public List<GameObject> items;
+    //public Transform[] itemTransforms;
 
     public GameObject tOther;
+    public GameObject star;
+
+    public int count;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        count = items.Count;
     }
 
     // Update is called once per frame
@@ -36,20 +40,32 @@ public class Timer : MonoBehaviour
             
             SpawnCoins();
             RunTimer();
-           // gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
     private void RunTimer()
     {
+        Debug.Log(items.Count);
         timeRemaining -= Time.deltaTime;
-        if (timeRemaining <= 0)
+        if (typeOfTimer == "blocks")
+            SpawnStar();
+        if (timeRemaining <= 0 && count > 0)
         {
-            DespawnCoins();
+            DespawnObjects();
             // gameObject.SetActive(true);
         }
+        else if (count == 0)
+            SpawnStar();
         else
             Invoke("RunTimer", 0f);
+    }
+
+
+    private void SpawnStar()
+    {
+        if (star != null)
+            star.SetActive(true);
     }
 
     private void SpawnCoins()
@@ -62,12 +78,17 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void DespawnCoins()
+    private void DespawnObjects()
     {
-        Debug.Log("Despawn Coins");
-        foreach (GameObject obj in items)
+        Debug.Log("Despawn Objects");
+        if (items != null)
         {
-            obj.SetActive(false);    
+            gameObject.SetActive(true);
+            count = items.Count;
+            foreach (GameObject obj in items)
+            {
+                obj.SetActive(false);
+            }
         }
     }
 
