@@ -5,35 +5,33 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
     public PlayerController player;
-    private float speed;
+    public float speed;
+    Rigidbody rb;
     // Start is called before the first frame update
-    
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-       // GameObject tempPlayer = collision.gameObject;
 
-        if (other.tag == "Player")
+    private void FixedUpdate()
+    {
+        Vector3 pos = rb.position;
+        rb.position += Vector3.back * speed * Time.fixedDeltaTime;
+        rb.MovePosition(pos);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
         {
-            speed = player.moveSpeed;
-            player.moveSpeed = player.moveSpeed - 25;
+            Vector3 pos = player.transform.position;
+            player.transform.position += Vector3.back * speed * Time.fixedDeltaTime;
+           // player.transform.position += 
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-      //  GameObject tempPlayer = collision.gameObject;
 
-        if (other.tag == "Player")
-        {
-            player.moveSpeed = speed;
-           
-        }
-    }
+
 }

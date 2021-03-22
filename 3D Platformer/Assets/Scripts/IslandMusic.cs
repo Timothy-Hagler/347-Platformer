@@ -9,11 +9,15 @@ public class IslandMusic : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
+        {
             FindObjectOfType<AudioManager>().Play(sound);
+            FindObjectOfType<AudioManager>().Stop("Lake");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         FindObjectOfType<AudioManager>().Stop(sound);
+        FindObjectOfType<AudioManager>().Play("Lake");
     }
 }

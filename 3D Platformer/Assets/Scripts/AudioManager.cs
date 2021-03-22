@@ -6,7 +6,9 @@ public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
+    private float tempVolume;
     // Start is called before the first frame update
+
     void Awake()
     {
         foreach(Sound s in sounds)
@@ -17,6 +19,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            tempVolume = s.source.volume;
         }
     }
 
@@ -48,5 +51,12 @@ public class AudioManager : MonoBehaviour
 
         s.source.Stop();
         
-    }
+
+        
+
+        
+
+
+
+        }
 }

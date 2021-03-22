@@ -9,6 +9,7 @@ public class StarGate : MonoBehaviour
     public PlayerController controller;
     public GameManager gm;
     public string ability;
+    public GameObject jailCell;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class StarGate : MonoBehaviour
             {
                 controller.AddAbility(ability);
                 gm.removeStar(requiredStars);
+                Destroy(jailCell);
                 Destroy(gameObject);
             } 
         }
