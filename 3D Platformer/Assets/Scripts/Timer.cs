@@ -47,7 +47,7 @@ public class Timer : MonoBehaviour
     private void RunTimer()
     {
         Debug.Log(items.Count);
-        timeRemaining -= Time.deltaTime;
+        timeRemaining -= Time.deltaTime / 2.5f;
         if (typeOfTimer == "blocks")
             SpawnStar();
         if (timeRemaining <= 0 && count > 0)
