@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     private float tempVolume;
+    public static string currPlaying;
     // Start is called before the first frame update
 
     void Awake()
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
         }
         
         s.source.Play();
+        currPlaying = name;
     }
 
     public void Stop(string name)
@@ -50,13 +52,34 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Stop();
-        
-
-        
-
-        
+        currPlaying = null;
 
 
 
         }
+
+    public void Pause(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("S is null");
+            return;
+        }
+
+        s.source.Pause();
+    }
+
+    public void UnPause(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("S is null");
+            return;
+        }
+
+        s.source.UnPause();
+        currPlaying = name;
+    }
 }
