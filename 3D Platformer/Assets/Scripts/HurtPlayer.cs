@@ -30,4 +30,17 @@ public class HurtPlayer : MonoBehaviour
             
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("collide");
+            Vector3 hitDirection = collision.transform.position - transform.position;
+            hitDirection = hitDirection.normalized;
+
+            FindObjectOfType<HealthManager>().HurtPlayer(damageToGive, hitDirection);
+
+        }
+    }
 }

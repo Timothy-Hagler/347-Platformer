@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     
 
-    private Vector3 moveDirection;
+    public Vector3 moveDirection;
     public float gravityScale;
     public float gravity;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded;
+    public bool isGrounded;
 
     public Transform ceilingCheck;
     public float ceilingDistance = 0.4f;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public WallClimb wallClimb;
     public BallRoll ballRoll;
 
-    Vector3 velocity;
+    public Vector3 velocity;
 
     public AudioManager sounds;
 
@@ -153,7 +153,11 @@ public class PlayerController : MonoBehaviour
             speed.speedActive = false;
         }
         if (ability == "wall climb")
-            wallClimb.SetWallClimbAvailable(true);
+        {
+            wallClimb.SetWallClimbActive(true);
+            speed.speedActive = false;
+            doubleJump.doubleJumpActive = false;
+        }
         if (ability == "ball roll")
             ballRoll.SetBallRollAvailable(true);
     }
