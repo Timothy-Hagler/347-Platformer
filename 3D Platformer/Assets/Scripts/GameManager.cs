@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     public HealthManager health;
 
+    //Pyramid Vars
+    public int activeBeams;
+    public GameObject lava;
+    public GameObject water;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,5 +56,16 @@ public class GameManager : MonoBehaviour
     public void changeHealth()
     {
         healthText.text = "Health " + health.currentHealth;
+    }
+
+    public void UpdateBeams()
+    {
+        activeBeams++;
+
+        if (activeBeams == 5)
+        {
+            lava.SetActive(false);
+            water.SetActive(true);
+        }
     }
 }
