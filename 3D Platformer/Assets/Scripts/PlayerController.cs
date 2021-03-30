@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 velocity;
 
     public AudioManager sounds;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +85,13 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
                 jumpCount++;
-                sounds.Play("Jump");
+                int i = Random.Range(0, 2);
+                if (i == 0 && jumpCount <= 1)
+                    sounds.Play("Jumpa");
+                else if (i == 1 && jumpCount <= 1)
+                    sounds.Play("Jumpb");
+                 if (jumpCount == 2)
+                    sounds.Play("Jumpc");
             }
 
             velocity.y += gravity * Time.deltaTime;
@@ -104,6 +111,8 @@ public class PlayerController : MonoBehaviour
             SetAbility("speed");
         if (Input.GetKeyDown(KeyCode.H))
             SetAbility("double jump");
+        if (Input.GetKeyDown(KeyCode.J))
+            SetAbility("wall climb");
         if (Input.GetKeyDown(KeyCode.K))
             SetAbility("ball roll");
 
