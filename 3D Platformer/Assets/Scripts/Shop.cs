@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     public GameManager gm;
     public int requiredCoins;
     public int starsRemaining;
-    public AudioSource audio;
+    public AudioSource sound;
     // Start is called before the first frame update
     void Start()
     {

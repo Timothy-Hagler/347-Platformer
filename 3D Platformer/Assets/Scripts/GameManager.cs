@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public Text coinText;
     public Text starText;
+    public Text totalStarText;
     public Text healthText;
 
     public HealthManager health;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         currentStars += starToAdd;
         totalStars += starToAdd;
         starText.text = "Stars: " + currentStars;
+        totalStarText.text = "Total Stars: " + totalStars;
     }
 
     public void removeStar(int starToRemove)

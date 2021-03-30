@@ -16,7 +16,7 @@ public class StarPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0, 30 * Time.deltaTime, 0);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -104,6 +104,8 @@ public class PlayerController : MonoBehaviour
             SetAbility("speed");
         if (Input.GetKeyDown(KeyCode.H))
             SetAbility("double jump");
+        if (Input.GetKeyDown(KeyCode.K))
+            SetAbility("ball roll");
 
     }
 
@@ -145,20 +147,30 @@ public class PlayerController : MonoBehaviour
             speed.speedActive = true;
             doubleJump.doubleJumpActive = false;
             doubleJump.doubleJump();
+          //  ballRoll.resetMesh();
+            ballRoll.ballRollActive = false;
         }
         if (ability == "double jump" && doubleJump.doubleJumpAvailabe)
         {
             doubleJump.doubleJumpActive = true;
             doubleJump.doubleJump();
             speed.speedActive = false;
+           // ballRoll.resetMesh();
+            ballRoll.ballRollActive = false;
         }
         if (ability == "wall climb")
         {
             wallClimb.SetWallClimbActive(true);
             speed.speedActive = false;
             doubleJump.doubleJumpActive = false;
+           // ballRoll.resetMesh();
+            ballRoll.ballRollActive = false;
         }
         if (ability == "ball roll")
-            ballRoll.SetBallRollAvailable(true);
+        {
+            ballRoll.ballRollActive = true;
+           // ballRoll.changeMesh();
+        }
+        
     }
 }
