@@ -12,6 +12,7 @@ public class AnimationStateController : MonoBehaviour
      int isWalkingBackwardsHash;
      int isRunningHash;
      int isJumpingHash;
+     int isGlidingHash;
      public PlayerController player;
      // Start is called before the first frame update
      void Start()
@@ -23,6 +24,7 @@ public class AnimationStateController : MonoBehaviour
          isWalkingLeftHash = Animator.StringToHash("isWalkingLeft");
          isWalkingRightHash = Animator.StringToHash("isWalkingRight");
          isWalkingBackwardsHash = Animator.StringToHash("isWalkingBackwards");
+         isGlidingHash = Animator.StringToHash("isGliding");
     }
 
      // Update is called once per frame
@@ -31,6 +33,7 @@ public class AnimationStateController : MonoBehaviour
          bool isWalking = animator.GetBool(isWalkingHash);
          bool isRunning = animator.GetBool(isRunningHash);
          bool isJumping = animator.GetBool(isJumpingHash);
+         bool isGliding = animator.GetBool(isGlidingHash);
          bool isWalkingLeft = animator.GetBool(isWalkingLeftHash);
          bool isWalkingRight = animator.GetBool(isWalkingRightHash);
          bool isWalkingBackwards = animator.GetBool(isWalkingBackwardsHash);
@@ -98,7 +101,16 @@ public class AnimationStateController : MonoBehaviour
          {
              animator.SetBool(isJumpingHash, false);
          }
-     }
+
+        if ((player.isGliding))
+        {
+            animator.SetBool(isGlidingHash, true);
+        }
+        if ((!player.isGliding))
+        {
+            animator.SetBool(isGlidingHash, false);
+        }
+    }
 
     /*Animator animator;
     float velocity = 0.0f;

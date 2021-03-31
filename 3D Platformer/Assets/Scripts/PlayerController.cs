@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 moveDirection;
     public float gravityScale;
     public float gravity;
+    
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -34,11 +35,13 @@ public class PlayerController : MonoBehaviour
     public DoubleJump doubleJump;
     public WallClimb wallClimb;
     public BallRoll ballRoll;
+    public Glide glide;
 
     public Vector3 velocity;
 
     public AudioManager sounds;
-    
+
+    public bool isGliding;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
         doubleJump = FindObjectOfType<DoubleJump>();
         wallClimb = FindObjectOfType<WallClimb>();
         ballRoll = FindObjectOfType<BallRoll>();
+        glide = FindObjectOfType<Glide>();
         sounds = FindObjectOfType<AudioManager>();
     }
 
@@ -62,6 +66,13 @@ public class PlayerController : MonoBehaviour
         {
             gravity = -100f;
         }*/
+
+        if (isGrounded)
+        {
+            gravity = -35f;
+            isGliding = false;
+           // glide.glideActive = false;
+        }
 
         if (knockbackCounter <= 0)
         {
@@ -81,10 +92,23 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 
-            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && doubleJump.doubleJumpActive)))
+            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && doubleJump.doubleJumpActive || glide.glideActive)))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
             {
-                velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                
+                //velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
                 jumpCount++;
+                if(jumpCount == 2 && glide.glideActive)
+                {
+                    gravity = glide.t_Grav;
+                    isGliding = true;
+                }
+                else
+                {
+                    gravity = -35f;
+                    isGliding = false;
+                    velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                }
+                
                 int i = Random.Range(0, 2);
                 if (i == 0 && jumpCount <= 1)
                     sounds.Play("Jumpa");
@@ -114,7 +138,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
             SetAbility("wall climb");
         if (Input.GetKeyDown(KeyCode.K))
-            SetAbility("ball roll");
+            SetAbility("glide");
 
     }
 
@@ -132,20 +156,20 @@ public class PlayerController : MonoBehaviour
         if (ability == "speed")
         {
             speed.SetSpeedAvailable(true);
-            speed.speedActive = true;
-            doubleJump.doubleJumpActive = false;
+           // speed.speedActive = true;
+           // doubleJump.doubleJumpActive = false;
         }
         if (ability == "double jump")
         {
             doubleJump.SetDoubleJumpAvailable(true);
-            doubleJump.doubleJumpActive = true;
-            doubleJump.doubleJump();
-            speed.speedActive = false;
+           // doubleJump.doubleJumpActive = true;
+           // doubleJump.doubleJump();
+            //speed.speedActive = false;
         }
         if (ability == "wall climb")
             wallClimb.SetWallClimbAvailable(true);
-        if (ability == "ball roll")
-            ballRoll.SetBallRollAvailable(true);
+        if (ability == "glide")
+            glide.SetGlideAvailable(true);
 
     }
 
@@ -155,30 +179,35 @@ public class PlayerController : MonoBehaviour
         {
             speed.speedActive = true;
             doubleJump.doubleJumpActive = false;
-            doubleJump.doubleJump();
-          //  ballRoll.resetMesh();
-            ballRoll.ballRollActive = false;
+           // doubleJump.doubleJump();
+            //  ballRoll.resetMesh();
+            wallClimb.SetWallClimbActive(false);
+            glide.glideActive = false;
         }
         if (ability == "double jump" && doubleJump.doubleJumpAvailabe)
         {
             doubleJump.doubleJumpActive = true;
-            doubleJump.doubleJump();
+           // doubleJump.doubleJump();
             speed.speedActive = false;
-           // ballRoll.resetMesh();
-            ballRoll.ballRollActive = false;
+            // ballRoll.resetMesh();
+            glide.glideActive = false;
+            wallClimb.SetWallClimbActive(false);
         }
         if (ability == "wall climb")
         {
             wallClimb.SetWallClimbActive(true);
             speed.speedActive = false;
             doubleJump.doubleJumpActive = false;
-           // ballRoll.resetMesh();
-            ballRoll.ballRollActive = false;
+            // ballRoll.resetMesh();
+            glide.glideActive = false;
         }
-        if (ability == "ball roll")
+        if (ability == "glide")
         {
-            ballRoll.ballRollActive = true;
-           // ballRoll.changeMesh();
+            glide.glideActive = true;
+            wallClimb.SetWallClimbActive(false);
+            speed.speedActive = false;
+            doubleJump.doubleJumpActive = false;
+            // ballRoll.changeMesh();
         }
         
     }
