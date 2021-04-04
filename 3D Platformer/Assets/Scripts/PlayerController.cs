@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(moveDirection * moveSpeed * Time.deltaTime);
 
-            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && doubleJump.doubleJumpActive || glide.glideActive)))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
+            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && (doubleJump.doubleJumpActive || glide.glideActive))))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
             {
                 
                 //velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
                 {
                     gravity = glide.t_Grav;
                     isGliding = true;
+                    
                 }
                 else
                 {
