@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     public AudioManager sounds;
 
     public bool isGliding;
+    public bool canInteract;
+    public bool enableInteract;
+
+    public ChangeAbilities abilities;
 
     // Start is called before the first frame update
     void Start()
@@ -132,14 +136,36 @@ public class PlayerController : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
 
 
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
             SetAbility("speed");
         if (Input.GetKeyDown(KeyCode.H))
             SetAbility("double jump");
         if (Input.GetKeyDown(KeyCode.J))
             SetAbility("wall climb");
         if (Input.GetKeyDown(KeyCode.K))
-            SetAbility("glide");
+            SetAbility("glide");*/
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+           
+            if (!abilities.menuIsOpen)
+            {
+                abilities.ShowMenu();
+            }
+             else
+             {
+                 abilities.HideMenu();
+             }
+        }
+
+
+        if (enableInteract)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+                canInteract = true;
+        }
+      //  else
+           // canInteract = false;
 
     }
 
@@ -180,6 +206,7 @@ public class PlayerController : MonoBehaviour
         {
             speed.speedActive = true;
             doubleJump.doubleJumpActive = false;
+            moveSpeed = 30f;
            // doubleJump.doubleJump();
             //  ballRoll.resetMesh();
             wallClimb.SetWallClimbActive(false);
@@ -188,6 +215,7 @@ public class PlayerController : MonoBehaviour
         if (ability == "double jump" && doubleJump.doubleJumpAvailabe)
         {
             doubleJump.doubleJumpActive = true;
+            moveSpeed = 10f;
            // doubleJump.doubleJump();
             speed.speedActive = false;
             // ballRoll.resetMesh();
@@ -198,6 +226,7 @@ public class PlayerController : MonoBehaviour
         {
             wallClimb.SetWallClimbActive(true);
             speed.speedActive = false;
+            moveSpeed = 10f;
             doubleJump.doubleJumpActive = false;
             // ballRoll.resetMesh();
             glide.glideActive = false;
@@ -206,6 +235,7 @@ public class PlayerController : MonoBehaviour
         {
             glide.glideActive = true;
             wallClimb.SetWallClimbActive(false);
+            moveSpeed = 10f;
             speed.speedActive = false;
             doubleJump.doubleJumpActive = false;
             // ballRoll.changeMesh();

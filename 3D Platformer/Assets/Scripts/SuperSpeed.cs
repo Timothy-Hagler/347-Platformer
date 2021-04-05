@@ -22,18 +22,25 @@ public class SuperSpeed : MonoBehaviour
     {
         if (speedAvailable)
         {
-            if (Input.GetKeyDown(KeyCode.L) && speedActive)
+            if (speedActive && !speedOn)
             {
-                if (speedOn == false)
+               // if (speedOn == false)
                 {
-                    controller.moveSpeed = controller.moveSpeed * speedMultiple;
+                    controller.moveSpeed = 30f;
                     speedOn = true;
                 }
-                else
+             /*   else
                 {
                     controller.moveSpeed = controller.moveSpeed / speedMultiple;
                     speedOn = false;
+                }*/
+             if (!speedActive && speedOn)
+                {
+                    speedOn = false;
+                    
                 }
+             if (!speedActive)
+                    controller.moveSpeed = 10f;
 
             }
         }
