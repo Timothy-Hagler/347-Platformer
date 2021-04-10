@@ -122,9 +122,10 @@ public class PlayerController : MonoBehaviour
                  if (jumpCount == 2)
                     sounds.Play("Jumpc");
             }
-
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
+            
+                velocity.y += gravity * Time.deltaTime;
+                controller.Move(velocity * Time.deltaTime);
+            
      
         }
         else
