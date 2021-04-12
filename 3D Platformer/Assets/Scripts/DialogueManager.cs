@@ -11,11 +11,14 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
 
     public Animator animator;
+    public PlayerController player;
 
     
 
     private Queue<string> sentences;
     private int convoIndex;
+
+    public static bool isInDialogue;
 
 
 
@@ -23,10 +26,13 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        isInDialogue = true;
+        player.moveSpeed = 0f;
         animator.SetBool("isOpen", true);
 
         npcNameText.text = dialogue.name;
@@ -59,6 +65,8 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("End of conversation");
         animator.SetBool("isOpen", false);
+        isInDialogue = false;
+        player.moveSpeed = player.t_moveSpeed;
     }
 
     IEnumerator TypeSentence(string sentence)

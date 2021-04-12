@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed;
+    public float t_moveSpeed;
     //public Rigidbody rb;
     public float jumpForce;
     public CharacterController controller;
@@ -59,115 +60,119 @@ public class PlayerController : MonoBehaviour
         ballRoll = FindObjectOfType<BallRoll>();
         glide = FindObjectOfType<Glide>();
         sounds = FindObjectOfType<AudioManager>();
+        t_moveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        /*isOnCeiling = Physics.CheckSphere(ceilingCheck.position, ceilingDistance);
-        if (isOnCeiling)
+        if (!DialogueManager.isInDialogue)
         {
-            gravity = -100f;
-        }*/
 
-        if (isGrounded)
-        {
-            gravity = -35f;
-            isGliding = false;
-           // glide.glideActive = false;
-        }
-
-        if (knockbackCounter <= 0)
-        {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-            if (isGrounded && velocity.y < 0)
+            /*isOnCeiling = Physics.CheckSphere(ceilingCheck.position, ceilingDistance);
+            if (isOnCeiling)
             {
-                velocity.y = -2f;
-                jumpCount = 0;
+                gravity = -100f;
+            }*/
+
+            if (isGrounded)
+            {
+                gravity = -35f;
+                isGliding = false;
+                // glide.glideActive = false;
             }
 
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            moveDirection = (transform.forward * z) + (transform.right * x);
-            
-
-            controller.Move(moveDirection * moveSpeed * Time.deltaTime);
-
-            if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && (doubleJump.doubleJumpActive || glide.glideActive))))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
+            if (knockbackCounter <= 0)
             {
-                
-                //velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-                jumpCount++;
-                if(jumpCount == 2 && glide.glideActive)
+                isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+                if (isGrounded && velocity.y < 0)
                 {
-                    gravity = glide.t_Grav;
-                    isGliding = true;
-                    
+                    velocity.y = -2f;
+                    jumpCount = 0;
+                }
+
+                float x = Input.GetAxis("Horizontal");
+                float z = Input.GetAxis("Vertical");
+
+                moveDirection = (transform.forward * z) + (transform.right * x);
+
+
+                controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+                if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && (doubleJump.doubleJumpActive || glide.glideActive))))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
+                {
+
+                    //velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                    jumpCount++;
+                    if (jumpCount == 2 && glide.glideActive)
+                    {
+                        gravity = glide.t_Grav;
+                        isGliding = true;
+
+                    }
+                    else
+                    {
+                        gravity = -35f;
+                        isGliding = false;
+                        velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                    }
+
+                    int i = Random.Range(0, 2);
+                    if (i == 0 && jumpCount <= 1)
+                        sounds.Play("Jumpa");
+                    else if (i == 1 && jumpCount <= 1)
+                        sounds.Play("Jumpb");
+                    if (jumpCount == 2)
+                        sounds.Play("Jumpc");
+                }
+
+                velocity.y += gravity * Time.deltaTime;
+                controller.Move(velocity * Time.deltaTime);
+
+
+            }
+            else
+            {
+                knockbackCounter -= Time.deltaTime;
+            }
+            moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);
+
+            controller.Move(moveDirection * Time.deltaTime);
+
+
+            /*if (Input.GetKeyDown(KeyCode.G))
+                SetAbility("speed");
+            if (Input.GetKeyDown(KeyCode.H))
+                SetAbility("double jump");
+            if (Input.GetKeyDown(KeyCode.J))
+                SetAbility("wall climb");
+            if (Input.GetKeyDown(KeyCode.K))
+                SetAbility("glide");*/
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+
+                if (!abilities.menuIsOpen)
+                {
+                    abilities.ShowMenu();
                 }
                 else
                 {
-                    gravity = -35f;
-                    isGliding = false;
-                    velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+                    abilities.HideMenu();
                 }
-                
-                int i = Random.Range(0, 2);
-                if (i == 0 && jumpCount <= 1)
-                    sounds.Play("Jumpa");
-                else if (i == 1 && jumpCount <= 1)
-                    sounds.Play("Jumpb");
-                 if (jumpCount == 2)
-                    sounds.Play("Jumpc");
             }
-            
-                velocity.y += gravity * Time.deltaTime;
-                controller.Move(velocity * Time.deltaTime);
-            
-     
-        }
-        else
-        {
-            knockbackCounter -= Time.deltaTime;
-        }
-        moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);
-
-        controller.Move(moveDirection * Time.deltaTime);
 
 
-        /*if (Input.GetKeyDown(KeyCode.G))
-            SetAbility("speed");
-        if (Input.GetKeyDown(KeyCode.H))
-            SetAbility("double jump");
-        if (Input.GetKeyDown(KeyCode.J))
-            SetAbility("wall climb");
-        if (Input.GetKeyDown(KeyCode.K))
-            SetAbility("glide");*/
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-           
-            if (!abilities.menuIsOpen)
+            if (enableInteract)
             {
-                abilities.ShowMenu();
+                if (Input.GetKeyDown(KeyCode.F))
+                    canInteract = true;
             }
-             else
-             {
-                 abilities.HideMenu();
-             }
+            //  else
+            // canInteract = false;
         }
-
-
-        if (enableInteract)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-                canInteract = true;
-        }
-      //  else
-           // canInteract = false;
-
     }
 
     
@@ -208,6 +213,7 @@ public class PlayerController : MonoBehaviour
             speed.speedActive = true;
             doubleJump.doubleJumpActive = false;
             moveSpeed = 30f;
+            t_moveSpeed = moveSpeed;
            // doubleJump.doubleJump();
             //  ballRoll.resetMesh();
             wallClimb.SetWallClimbActive(false);
@@ -217,7 +223,8 @@ public class PlayerController : MonoBehaviour
         {
             doubleJump.doubleJumpActive = true;
             moveSpeed = 10f;
-           // doubleJump.doubleJump();
+            t_moveSpeed = moveSpeed;
+            // doubleJump.doubleJump();
             speed.speedActive = false;
             // ballRoll.resetMesh();
             glide.glideActive = false;
@@ -228,6 +235,7 @@ public class PlayerController : MonoBehaviour
             wallClimb.SetWallClimbActive(true);
             speed.speedActive = false;
             moveSpeed = 10f;
+            t_moveSpeed = moveSpeed;
             doubleJump.doubleJumpActive = false;
             // ballRoll.resetMesh();
             glide.glideActive = false;
@@ -237,6 +245,7 @@ public class PlayerController : MonoBehaviour
             glide.glideActive = true;
             wallClimb.SetWallClimbActive(false);
             moveSpeed = 10f;
+            t_moveSpeed = moveSpeed;
             speed.speedActive = false;
             doubleJump.doubleJumpActive = false;
             // ballRoll.changeMesh();

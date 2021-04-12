@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!PauseMenu.gameIsPaused)
+        if (!PauseMenu.gameIsPaused && !DialogueManager.isInDialogue)
         {
             // Get the x-position of the mouse and rotate the target
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
