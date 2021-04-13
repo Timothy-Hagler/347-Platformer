@@ -56,7 +56,7 @@ public class WallClimb : MonoBehaviour
             }
             else if (!player.isGrounded)
             {
-                player.moveDirection = (-hit.normal * player.moveSpeed) * 100f;
+                player.moveDirection.y = (hit.normal.y * player.moveSpeed) * 3f;
             }
             else if (player.isGrounded)
             {

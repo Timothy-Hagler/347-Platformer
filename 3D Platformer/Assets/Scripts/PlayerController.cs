@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,8 +46,16 @@ public class PlayerController : MonoBehaviour
     public bool isGliding;
     public bool canInteract;
     public bool enableInteract;
+    public static bool isInAbilities;
 
     public ChangeAbilities abilities;
+
+    public CameraController mainCam;
+
+    public Button speedButton;
+    public Button doubleButton;
+    public Button wallButton;
+    public Button glideButton;
 
     // Start is called before the first frame update
     void Start()
@@ -157,11 +166,24 @@ public class PlayerController : MonoBehaviour
                 if (!abilities.menuIsOpen)
                 {
                     abilities.ShowMenu();
+                    isInAbilities = true;
+                    Time.timeScale = 0.25f;
+                    mainCam.rotateSpeed = 0f;
+
                 }
-                else
+            }
+
+            if (Input.GetKeyUp(KeyCode.Tab))
+            {
+
+                if (abilities.menuIsOpen)
                 {
                     abilities.HideMenu();
+                    isInAbilities = false;
+                    Time.timeScale = 1f;
+                    mainCam.rotateSpeed = mainCam.t_rotateSpeed;
                 }
+                
             }
 
 
@@ -189,20 +211,28 @@ public class PlayerController : MonoBehaviour
         if (ability == "speed")
         {
             speed.SetSpeedAvailable(true);
+            speedButton.interactable = true;
            // speed.speedActive = true;
            // doubleJump.doubleJumpActive = false;
         }
         if (ability == "double jump")
         {
             doubleJump.SetDoubleJumpAvailable(true);
+            doubleButton.interactable = true;
            // doubleJump.doubleJumpActive = true;
            // doubleJump.doubleJump();
             //speed.speedActive = false;
         }
         if (ability == "wall climb")
+        {
             wallClimb.SetWallClimbAvailable(true);
+            wallButton.interactable = true;
+        }
         if (ability == "glide")
+        {
             glide.SetGlideAvailable(true);
+            glideButton.interactable = true;
+        }
 
     }
 

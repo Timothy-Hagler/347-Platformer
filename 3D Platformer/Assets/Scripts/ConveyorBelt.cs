@@ -7,6 +7,7 @@ public class ConveyorBelt : MonoBehaviour
     public PlayerController player;
     public float speed;
     Rigidbody rb;
+    private Collider col;
     // Start is called before the first frame update
 
     private void Start()
@@ -14,6 +15,24 @@ public class ConveyorBelt : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (col != null)
+        {
+           // Debug.Log("Not null");
+           // Vector3 pos = player.transform.position;
+           // player.moveDirection = pos + Vector3.back * speed * Time.fixedDeltaTime;
+
+            if (player.speed.speedActive)
+            {
+                player.moveSpeed = 5;
+            }
+            if (!player.speed.speedActive)
+            {
+                player.moveSpeed = 0.25f;
+            }
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -22,13 +41,26 @@ public class ConveyorBelt : MonoBehaviour
         rb.MovePosition(pos);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            Vector3 pos = player.transform.position;
-            player.transform.position += Vector3.back * speed * Time.fixedDeltaTime;
-           // player.transform.position += 
+            col = player.GetComponent<Collider>();
+            Debug.Log("Player");
+            // Vector3 pos = player.transform.position;
+            // player.transform.position += Vector3.back * speed * Time.fixedDeltaTime;
+            // player.transform.position += 
+            
+           // player.moveDirection = pos + Vector3.back * speed * Time.fixedDeltaTime;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            col = null;
+            player.moveSpeed = player.t_moveSpeed;
         }
     }
 

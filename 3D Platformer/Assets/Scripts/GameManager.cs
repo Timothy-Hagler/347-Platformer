@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
     public GameObject lava;
     public GameObject water;
 
+    public PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -69,5 +71,22 @@ public class GameManager : MonoBehaviour
             lava.SetActive(false);
             water.SetActive(true);
         }
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(player, this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        currentStars = data.stars;
+        health.currentHealth = data.health;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        player.transform.position = position;
     }
 }

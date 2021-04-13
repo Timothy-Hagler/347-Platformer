@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public bool useOffsetValues;
 
     public float rotateSpeed;
+    public float t_rotateSpeed;
 
     public Transform pivot;
 
@@ -28,6 +29,7 @@ public class CameraController : MonoBehaviour
 
         pivot.transform.position = target.transform.position;
         pivot.transform.parent = target.transform;
+        t_rotateSpeed = rotateSpeed;
 
         Cursor.visible = false;
     }
@@ -53,17 +55,18 @@ public class CameraController : MonoBehaviour
                 pivot.Rotate(-vertical, 0, 0);
 
             // Limit the up/down camera rotation
-            if (pivot.rotation.eulerAngles.x > maxViewAngle && pivot.rotation.eulerAngles.x < 180f)
-            {
-                pivot.rotation = Quaternion.Euler(maxViewAngle, 0, 0);
-            }
+                if (pivot.rotation.eulerAngles.x > maxViewAngle && pivot.rotation.eulerAngles.x < 180f)
+                {
+                    pivot.rotation = Quaternion.Euler(maxViewAngle, 0, 0);
+                }
 
-            if (pivot.rotation.eulerAngles.x > 180f && pivot.rotation.eulerAngles.x < 360f + minViewAngle)
-            {
-                pivot.rotation = Quaternion.Euler(360f + minViewAngle, 0, 0);
-            }
+                if (pivot.rotation.eulerAngles.x > 180f && pivot.rotation.eulerAngles.x < 360f + minViewAngle)
+                {
+                    pivot.rotation = Quaternion.Euler(360f + minViewAngle, 0, 0);
+                }
+            
 
-
+    
             //Move the camera based on current rotation of the target and original offset
             float desiredYAngle = target.eulerAngles.y;
             float desiredXAngle = pivot.eulerAngles.x;
