@@ -17,7 +17,7 @@ public class ConveyorBelt : MonoBehaviour
 
     private void Update()
     {
-        if (col != null)
+      /*  if (col != null)
         {
            // Debug.Log("Not null");
            // Vector3 pos = player.transform.position;
@@ -31,7 +31,7 @@ public class ConveyorBelt : MonoBehaviour
             {
                 player.moveSpeed = 0.25f;
             }
-        }
+        }*/
     }
 
     private void FixedUpdate()
@@ -39,6 +39,13 @@ public class ConveyorBelt : MonoBehaviour
         Vector3 pos = rb.position;
         rb.position += Vector3.back * speed * Time.fixedDeltaTime;
         rb.MovePosition(pos);
+
+        if (col != null)
+        {
+            Vector3 pos2 = rb.position;
+            player.controller.transform.position -= Vector3.back * speed * Time.fixedDeltaTime;
+           // player.controller.Move(pos2);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)

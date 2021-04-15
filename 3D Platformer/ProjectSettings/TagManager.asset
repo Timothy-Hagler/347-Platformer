@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Ladder
   - Snowball
+  - Ice
   layers:
   - Default
   - TransparentFX

@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public bool canInteract;
     public bool enableInteract;
     public static bool isInAbilities;
+    public bool icy;
 
     public ChangeAbilities abilities;
 
@@ -56,6 +57,9 @@ public class PlayerController : MonoBehaviour
     public Button doubleButton;
     public Button wallButton;
     public Button glideButton;
+
+    private Vector3 lastMoveDirection;
+    public float slideSpeed = 1.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -107,8 +111,24 @@ public class PlayerController : MonoBehaviour
 
                 moveDirection = (transform.forward * z) + (transform.right * x);
 
+                if (Mathf.Abs(x) > 0.0225f || Mathf.Abs(z) > 0.0225f)
+                {
+                    lastMoveDirection = moveDirection;
+                }
 
+                if (icy)
+                {
+                    moveDirection = lastMoveDirection * slideSpeed;
+                    
+                    controller.Move(moveDirection * slideSpeed  * Time.deltaTime);
+                }
+                else 
+                {
+                   
                 controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+                }
+                
+                
 
                 if (Input.GetButtonDown("Jump") && (isGrounded || (jumpCount < 2 && (doubleJump.doubleJumpActive || glide.glideActive))))// || (isGrounded || (jumpCount < 2 && glide.glideActive)))
                 {
@@ -194,6 +214,9 @@ public class PlayerController : MonoBehaviour
             }
             //  else
             // canInteract = false;
+
+            
+            
         }
     }
 
@@ -282,4 +305,26 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ice"))
+        {
+            icy = true; 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ice"))
+        {
+            icy = false ;
+        }
+    }
+
+
+
+   
 }

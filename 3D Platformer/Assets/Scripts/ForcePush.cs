@@ -13,13 +13,6 @@ public class ForcePush : MonoBehaviour
     {
         player = GetComponent<PlayerController>();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DoPush();
-        }
-    }
 
     private void DoPush()
     {
@@ -33,15 +26,18 @@ public class ForcePush : MonoBehaviour
                 
                 Rigidbody pushedBody = pushObject.GetComponent<Rigidbody>();
                 Debug.Log(pushedBody);
-                pushedBody.AddExplosionForce(pushAmount, Vector3.forward, pushRadius);
+               // pushedBody.AddExplosionForce(pushAmount, Vector3.forward, pushRadius);
                 pushedBody.AddForceAtPosition(player.transform.forward, player.transform.position, ForceMode.Impulse);
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        DoPush();
-       
+        if (other.CompareTag("Snowball"))
+        {
+            DoPush();
+        }
     }
 }
