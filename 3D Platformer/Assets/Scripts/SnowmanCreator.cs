@@ -5,6 +5,7 @@ using UnityEngine;
 public class SnowmanCreator : MonoBehaviour
 {
     public GameObject[] snowball;
+    public GameObject barrier;
     public Transform[] placement;
     public int index;
     
@@ -27,6 +28,16 @@ public class SnowmanCreator : MonoBehaviour
             snowball[index].SetActive(true);
             Destroy(other.gameObject);
             index++;
+
+            if (index == 3)
+            {
+                Destroy(barrier);
+            }
+
+
+            
         }
     }
+
+
 }

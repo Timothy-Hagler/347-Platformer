@@ -6,6 +6,7 @@ public class Trampoline : MonoBehaviour
 {
 
     public PlayerController player;
+    public float jumpHeight = 75f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,8 @@ public class Trampoline : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Trampoline");
-            Vector3 jump = new Vector3(0f, 50f, 0f);
-            player.controller.SimpleMove(new Vector3(0f,100f,0f));
-            player.controller.Move(new Vector3 (0f, Mathf.Lerp(jump.y, player.transform.position.y, 0f), 0f));
+            //Vector3 jump = new Vector3(0f, 50f, 0f);
+            player.velocity.y = jumpHeight;
         }
     }
 }

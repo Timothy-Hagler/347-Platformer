@@ -89,11 +89,13 @@ public class HealthManager : MonoBehaviour
     public void Respawn()
     {
         player.transform.position = respawnPoint;
+        
 
         //currentHealth = maxHealth;
         if (!isRespawning)
         {
             StartCoroutine("RespawnCo");
+            
         }
     }
 
@@ -113,6 +115,7 @@ public class HealthManager : MonoBehaviour
         invincibilityCounter = invincibilityLength;
         playerRenderer.enabled = false;
         flashCounter = flashLength;
+        gm.changeHealth();
     }
 
     public void SetSpawnPoint(Vector3 newPosition)

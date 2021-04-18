@@ -12,6 +12,7 @@ public class BoatController : MonoBehaviour
     public float steerSpeed = 1f;
     public float movementThreshold = 10f;
     public Rigidbody rb;
+    public GameObject trigger;
 
 
 
@@ -20,7 +21,7 @@ public class BoatController : MonoBehaviour
     private float movementFactor;
     private float horizontalInput;
     private float steerFactor;
-    private bool canSteer;
+    public  bool canSteer;
 
 
     private void Start()
@@ -34,6 +35,8 @@ public class BoatController : MonoBehaviour
         Balance();
         if (canSteer)
         {
+           // player.transform.position = trigger.transform.position;
+            
             Movement();
             Steering();
         }
@@ -56,8 +59,14 @@ public class BoatController : MonoBehaviour
     {
         verticalInput = Input.GetAxis("Vertical");
         movementFactor = Mathf.Lerp(movementFactor, verticalInput, Time.deltaTime / movementThreshold);
-        transform.Translate(0f, movementFactor * speed, 0f);
-        
+        transform.Translate(0f, movementFactor * speed * Time.deltaTime, 0f);
+        // player.moveDirection = (new Vector3(0f, movementFactor * speed, 0f));
+        player.controller.velocity.Set(0f, movementFactor * speed * Time.deltaTime, 0f);
+
+
+
+
+
     }
 
     private void Steering()
@@ -71,12 +80,20 @@ public class BoatController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canSteer = true;
-            player.controller.velocity.Set(rb.velocity.x, rb.velocity.y, rb.velocity.z);
-            player.controller.transform.position = transform.position + new Vector3(2f, 3f, 0f);
+            
 
-            // player.moveSpeed = 0f;
-            // player.transform.parent = transform;
+           player.transform.parent = transform;
+          //  player.transform.position = trigger.transform.position;
+         //   player.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+            canSteer = true;
+
+            // player.transform.localPosition = trigger.transform.position;
+            //  player.controller.velocity.Set(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+            // player.controller.transform.position = transform.position + new Vector3(2f, 3f, 0f);
+
+            player.moveSpeed = speed * movementFactor * Time.deltaTime;
+            // player.transform.position = trigger.transform.position;
         }
     }
 
@@ -85,7 +102,7 @@ public class BoatController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canSteer = false;
-            player.moveSpeed = player.t_moveSpeed;
+           // player.moveSpeed = player.t_moveSpeed;
 
            // player.transform.parent = null;
             
@@ -96,11 +113,14 @@ public class BoatController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //canSteer = true;
-            player.moveSpeed = 0f;
-            player.controller.velocity.Set(rb.velocity.x, rb.velocity.y, rb.velocity.z);
-            player.controller.transform.position = transform.position + new Vector3(2f, 3f, 0f);
-             player.transform.parent = transform;
+            
+           // player.moveSpeed = 0f;
+           // player.controller.velocity.Set(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+           // player.controller.transform.position = transform.position + new Vector3(2f, 3f, 0f);
+           //  player.transform.parent = trigger.transform;
+           // player.transform.position = trigger.transform.position;
+            //player.transform.localPosition = new Vector3(0f, 0f, 0f);
+            canSteer = true;
         }
     }
 }

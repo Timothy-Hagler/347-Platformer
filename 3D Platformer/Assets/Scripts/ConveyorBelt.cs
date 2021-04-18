@@ -44,6 +44,8 @@ public class ConveyorBelt : MonoBehaviour
         {
             Vector3 pos2 = rb.position;
             player.controller.transform.position -= Vector3.back * speed * Time.fixedDeltaTime;
+            
+            
            // player.controller.Move(pos2);
         }
     }

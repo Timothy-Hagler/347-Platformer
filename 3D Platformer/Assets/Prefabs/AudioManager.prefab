@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3674602101990287769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3674602101990287771}
+  - component: {fileID: 3674602101990287770}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3674602101990287771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674602101990287769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3674602101990287770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674602101990287769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859ba7188ada3be45921e868faa74ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Coin
+    clip: {fileID: 8300000, guid: 2c2258d22a09f844ebcc2fd81e4f695f, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Island1
+    clip: {fileID: 8300000, guid: 03769a3ecc176fd4eb48dbe4aec9559c, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Jungle
+    clip: {fileID: 8300000, guid: 09540b8aee6a0b84a861d18c8f76505e, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 5d59d3073ee43aa44a924aa153e16766, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Star
+    clip: {fileID: 8300000, guid: 2dfd024ec25a66441bdcea6285841e5c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Desert
+    clip: {fileID: 8300000, guid: 5dcce3bf31075a24fb0a8d8a15891c19, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Lake
+    clip: {fileID: 8300000, guid: bbfa2d1538a97bc49842ac20b30bd0b7, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Jumpa
+    clip: {fileID: 8300000, guid: f2ac5761873278940a57f9d5f00017a0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Jumpb
+    clip: {fileID: 8300000, guid: 02da256697b7c95489e8b7bdf05a7a73, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Jumpc
+    clip: {fileID: 8300000, guid: 6ae47f5f91c22924686697be0c7eade7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Raccoon
+    clip: {fileID: 8300000, guid: 200c755f7ca679c4297e4c26acbe1493, type: 3}
+    volume: 0.237
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Snow
+    clip: {fileID: 8300000, guid: 9ef52f2ba1ab8834d84262487811e921, type: 3}
+    volume: 0.237
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

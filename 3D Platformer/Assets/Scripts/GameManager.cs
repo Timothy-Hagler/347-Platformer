@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void changeHealth()
     {
-        healthText.text = "Health " + health.currentHealth;
+        healthText.text = "Health: " + health.currentHealth;
     }
 
     public void UpdateBeams()
