@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/World.unity
     guid: d1e9d305ebee7354e959655a2e85c4f3
+  - enabled: 1
+    path: Assets/Scenes/FinalTest.unity
+    guid: 344cd03a15c2ea94fb54e636fb8fca83
+  - enabled: 1
+    path: Assets/Scenes/Celebration.unity
+    guid: c2cebdc136addbb43b381704a01081f5
   m_configObjects: {}
