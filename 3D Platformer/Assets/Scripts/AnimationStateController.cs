@@ -13,7 +13,10 @@ public class AnimationStateController : MonoBehaviour
      int isRunningHash;
      int isJumpingHash;
      int isGlidingHash;
+     int isSwimmingHash;
+     int isWallClimbingHash;
      public PlayerController player;
+
      // Start is called before the first frame update
      void Start()
      {
@@ -25,6 +28,8 @@ public class AnimationStateController : MonoBehaviour
          isWalkingRightHash = Animator.StringToHash("isWalkingRight");
          isWalkingBackwardsHash = Animator.StringToHash("isWalkingBackwards");
          isGlidingHash = Animator.StringToHash("isGliding");
+         isSwimmingHash = Animator.StringToHash("isSwimming");
+         isWallClimbingHash = Animator.StringToHash("isWallClimbing");
     }
 
      // Update is called once per frame
@@ -37,6 +42,7 @@ public class AnimationStateController : MonoBehaviour
          bool isWalkingLeft = animator.GetBool(isWalkingLeftHash);
          bool isWalkingRight = animator.GetBool(isWalkingRightHash);
          bool isWalkingBackwards = animator.GetBool(isWalkingBackwardsHash);
+         bool isSwimming = animator.GetBool(isSwimmingHash);
          bool forwardPressed = Input.GetKey("w");
          bool leftPressed = Input.GetKey("a");
          bool rightPressed = Input.GetKey("d");
@@ -109,6 +115,24 @@ public class AnimationStateController : MonoBehaviour
         if ((!player.isGliding))
         {
             animator.SetBool(isGlidingHash, false);
+        }
+
+        if(player.isSwimming)
+        {
+            animator.SetBool(isSwimmingHash, true);
+        }
+        if (!player.isSwimming)
+        {
+            animator.SetBool(isSwimmingHash, false);
+        }
+
+        if(player.isWallClimbing)
+        {
+            animator.SetBool(isWallClimbingHash, true);
+        }
+        if (!player.isWallClimbing)
+        {
+            animator.SetBool(isWallClimbingHash, false);
         }
     }
 

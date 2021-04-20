@@ -30,7 +30,8 @@ public class SuperSpeed : MonoBehaviour
                 {
                     controller.moveSpeed = 30f;
                     speedOn = true;
-                    water.isTrigger = false;
+                    if (water != null)
+                        water.isTrigger = false;
                 }
              /*   else
                 {
@@ -45,14 +46,15 @@ public class SuperSpeed : MonoBehaviour
                 if (!speedActive)
                 {
                     controller.moveSpeed = 10f;
-                    water.isTrigger = true;
+                    if (water != null)
+                        water.isTrigger = true;
                 }
 
                 }
         }
-        if (speedActive)
+        if (speedActive && water != null)
             water.isTrigger = false;
-        if (!speedActive)
+        if (!speedActive && water != null)
             water.isTrigger = true;
     }
 

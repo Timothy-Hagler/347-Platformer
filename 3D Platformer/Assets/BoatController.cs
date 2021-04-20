@@ -24,7 +24,13 @@ public class BoatController : MonoBehaviour
     public  bool canSteer;
 
 
-    private void Start()
+    /*private void Start()
+    {
+        player = FindObjectOfType<PlayerController>();
+        rb = GetComponent<Rigidbody>();
+    }*/
+
+    private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody>();

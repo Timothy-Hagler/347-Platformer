@@ -52,17 +52,20 @@ public class WallClimb : MonoBehaviour
                     player.velocity.y = player.jumpForce;
                     //  player.controller.Move(hit.normal * player.moveSpeed);
                     player.moveDirection = -hit.normal * player.moveSpeed;
+                    player.isWallClimbing = true;
                 }
             }
             else if (!player.isGrounded)
             {
                 player.moveDirection.y = (hit.normal.y * player.moveSpeed) * 3f;
+                player.isWallClimbing = false;
             }
             else if (player.isGrounded)
             {
                 canWallClimb = true;
                 canStartTimer = false;
                 timer = t_timer;
+                player.isWallClimbing = false;
             }
         }
     }

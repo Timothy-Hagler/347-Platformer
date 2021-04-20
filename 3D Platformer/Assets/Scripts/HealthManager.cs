@@ -116,6 +116,7 @@ public class HealthManager : MonoBehaviour
         playerRenderer.enabled = false;
         flashCounter = flashLength;
         gm.changeHealth();
+        player.controller.velocity.Set(0f, 0f, 0f);
     }
 
     public void SetSpawnPoint(Vector3 newPosition)

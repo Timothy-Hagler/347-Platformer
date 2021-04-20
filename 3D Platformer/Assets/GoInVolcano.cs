@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GoInVolcano : MonoBehaviour
 {
-   
+    public int requiredStars;
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.allAbilities && GameManager.totalStars >= 50)
+        if (PlayerController.allAbilities && GameManager.totalStars >= requiredStars)
         {
             gameObject.SetActive(true);
         }

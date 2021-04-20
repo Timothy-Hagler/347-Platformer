@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public bool enableInteract;
     public static bool isInAbilities;
     public bool icy;
+    public bool isSwimming = false;
+    public bool isWallClimbing = false;
 
     public ChangeAbilities abilities;
 
