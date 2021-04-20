@@ -10,6 +10,8 @@ public class SuperSpeed : MonoBehaviour
     public bool speedAvailable;
     public bool speedActive;
     public int speedMultiple;
+
+    public Collider water;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class SuperSpeed : MonoBehaviour
                 {
                     controller.moveSpeed = 30f;
                     speedOn = true;
+                    water.isTrigger = false;
                 }
              /*   else
                 {
@@ -39,11 +42,18 @@ public class SuperSpeed : MonoBehaviour
                     speedOn = false;
                     
                 }
-             if (!speedActive)
+                if (!speedActive)
+                {
                     controller.moveSpeed = 10f;
+                    water.isTrigger = true;
+                }
 
-            }
+                }
         }
+        if (speedActive)
+            water.isTrigger = false;
+        if (!speedActive)
+            water.isTrigger = true;
     }
 
     public void SetSpeedAvailable(bool value)

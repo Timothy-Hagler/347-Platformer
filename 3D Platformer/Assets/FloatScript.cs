@@ -21,9 +21,11 @@ public class FloatScript : MonoBehaviour
 
         if (forceFactor > 0f)
         {
+            GetComponent<Rigidbody>().freezeRotation = true;
             floatForce = -Physics.gravity * GetComponent<Rigidbody>().mass * (forceFactor - GetComponent<Rigidbody>().velocity.y * waterDensity);
             floatForce += new Vector3(0f, -downForce * GetComponent<Rigidbody>().mass, 0f);
-            GetComponent<Rigidbody>().AddForceAtPosition(floatForce, transform.position);
+            GetComponent<Rigidbody>().AddForceAtPosition(new Vector3(0f,floatForce.y,0f), transform.position);
+            
         }
     }
 }

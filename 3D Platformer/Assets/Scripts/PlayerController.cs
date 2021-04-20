@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 lastMoveDirection;
     public float slideSpeed = 1.75f;
 
+    public static bool inputEnabled = true;
+    public static bool allAbilities = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -256,6 +259,8 @@ public class PlayerController : MonoBehaviour
             glideButton.interactable = true;
         }
 
+        AllAbiltiesAvailable();
+
     }
 
     public void SetAbility(string ability)
@@ -321,6 +326,12 @@ public class PlayerController : MonoBehaviour
         {
             icy = false ;
         }
+    }
+
+    public void AllAbiltiesAvailable()
+    {
+        if (speed.speedAvailable && doubleJump.doubleJumpAvailabe && wallClimb.wallClimbAvailabe && glide.glideAvailable)
+            allAbilities = true;
     }
 
 

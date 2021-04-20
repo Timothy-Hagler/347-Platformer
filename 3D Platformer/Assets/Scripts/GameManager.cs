@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int currentCoins;
     public int currentStars;
-    public int totalStars;
+    public static int totalStars;
 
     public Text coinText;
     public Text starText;

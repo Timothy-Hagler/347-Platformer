@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent (typeof (FloatScript))]
 public class BoatController : MonoBehaviour
 {
-    public Vector3 COM;
+    public GameObject COM;
     public PlayerController player;
     [Space(15)]
     public float speed = 1f;
@@ -35,7 +35,9 @@ public class BoatController : MonoBehaviour
         Balance();
         if (canSteer)
         {
-           // player.transform.position = trigger.transform.position;
+            player.transform.position = trigger.transform.position;
+            player.transform.localPosition = new Vector3(0f, 2f, 0f);
+            
             
             Movement();
             Steering();
@@ -46,13 +48,16 @@ public class BoatController : MonoBehaviour
     {
         if (!m_COM)
         {
-            m_COM = new GameObject("COM").transform;
+            //  m_COM = 
+           // GameObject COM = new GameObject("COM");
+            COM.transform.position = trigger.transform.position;
+            m_COM = COM.transform;
             m_COM.SetParent(transform);
             
         }
 
-        m_COM.position = COM;
-        GetComponent<Rigidbody>().centerOfMass = m_COM.position;
+        m_COM.position = COM.transform.position;
+        GetComponent<Rigidbody>().centerOfMass = m_COM.localPosition;
     }
 
     private void Movement()
@@ -62,27 +67,34 @@ public class BoatController : MonoBehaviour
         transform.Translate(0f, movementFactor * speed * Time.deltaTime, 0f);
         // player.moveDirection = (new Vector3(0f, movementFactor * speed, 0f));
         player.controller.velocity.Set(0f, movementFactor * speed * Time.deltaTime, 0f);
+       // player.transform.Translate(0f, movementFactor * speed * Time.deltaTime, 0f);
 
 
 
 
 
     }
-
+   
     private void Steering()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        steerFactor = Mathf.Lerp(steerFactor, -horizontalInput * verticalInput, Time.deltaTime / movementThreshold);
-        transform.Translate(steerFactor * steerSpeed, 0f, 0f);
+        steerFactor = Mathf.Lerp(steerFactor, horizontalInput * verticalInput, Time.deltaTime / movementThreshold);
+        //transform.Translate(steerFactor * steerSpeed, 0f, 0f);
+        transform.Rotate(0f, 0f, steerFactor * steerSpeed);
+        //player.transform.Translate(steerFactor * steerSpeed * Time.deltaTime, 0f, 0f);
+        //player.controller.velocity.Set(0f, steerFactor * steerSpeed, 0f);
+        player.transform.Rotate(0f, steerFactor * steerSpeed, 0f);
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            
+           // PlayerController.inputEnabled = false;
 
-           player.transform.parent = transform;
+           player.transform.parent = trigger.transform;
+           
           //  player.transform.position = trigger.transform.position;
          //   player.transform.localPosition = new Vector3(0f, 0f, 0f);
 
@@ -92,7 +104,13 @@ public class BoatController : MonoBehaviour
             //  player.controller.velocity.Set(rb.velocity.x, rb.velocity.y, rb.velocity.z);
             // player.controller.transform.position = transform.position + new Vector3(2f, 3f, 0f);
 
-            player.moveSpeed = speed * movementFactor * Time.deltaTime;
+
+
+
+            player.moveSpeed = speed * movementFactor;
+           
+
+
             // player.transform.position = trigger.transform.position;
         }
     }
@@ -102,9 +120,9 @@ public class BoatController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canSteer = false;
-           // player.moveSpeed = player.t_moveSpeed;
-
-           // player.transform.parent = null;
+            player.moveSpeed = player.t_moveSpeed;
+           
+            player.transform.parent = null;
             
         }
     }
