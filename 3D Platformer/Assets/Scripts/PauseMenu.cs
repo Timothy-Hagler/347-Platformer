@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
-    public AudioManager audio;
+    public AudioManager sound;
 
     // Update is called once per frame
     void Update()
@@ -48,6 +48,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    
 
     public void QuitGame()
     {

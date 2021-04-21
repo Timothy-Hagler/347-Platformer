@@ -17,6 +17,13 @@ public class GameManager : MonoBehaviour
 
     public HealthManager health;
 
+
+
+    public int totalCoins = 0;
+    public int worldStars = 0;
+    public CoinPickup[] allCOins;
+    public StarPickup[] stars;
+
     //Pyramid Vars
     public int activeBeams;
     public GameObject lava;
@@ -28,6 +35,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        allCOins = FindObjectsOfType<CoinPickup>();
+        stars = FindObjectsOfType<StarPickup>();
+        foreach(CoinPickup coin in allCOins)
+        {
+            totalCoins++;
+        }
+        Debug.Log(totalCoins + " total coins");
+        
+        foreach(StarPickup star in stars)
+        {
+            worldStars++;
+        }
+        Debug.Log(worldStars + " total stars");
     }
 
     // Update is called once per frame

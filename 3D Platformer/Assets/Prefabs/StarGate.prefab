@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4322619721885713201}
   - component: {fileID: 4322619721885713202}
   - component: {fileID: 4322619721885713203}
+  - component: {fileID: -3757311010455450302}
   m_Layer: 0
   m_Name: StarGate
   m_TagString: Untagged
@@ -111,3 +112,19 @@ MonoBehaviour:
   gm: {fileID: 0}
   ability: speed
   jailCell: {fileID: 0}
+  canvas: {fileID: 0}
+  requiredStarsText: {fileID: 0}
+  reveal: {fileID: 0}
+  canReveal: 0
+--- !u!114 &-3757311010455450302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322619721885713204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cd3b5d076c59b49b33082e1d8f03cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

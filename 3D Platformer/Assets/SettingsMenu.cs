@@ -13,7 +13,7 @@ public class SettingsMenu : MonoBehaviour
     
     
 
-    Resolution[] resolutions;
+    static Resolution[] resolutions;
 
     private void Start()
     {

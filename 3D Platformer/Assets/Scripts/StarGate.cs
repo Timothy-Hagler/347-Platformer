@@ -16,6 +16,7 @@ public class StarGate : MonoBehaviour
     public TMP_Text requiredStarsText;
     public RevealWorld reveal;
     public bool canReveal = false;
+    public GameObject dialogueTrigger;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class StarGate : MonoBehaviour
             if (canReveal)
                 reveal.Reveal();
             LeaveAnimal();
+            dialogueTrigger.SetActive(true);
             Destroy(gameObject);
         }
     }
