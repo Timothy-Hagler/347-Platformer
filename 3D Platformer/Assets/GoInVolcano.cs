@@ -6,13 +6,22 @@ using UnityEngine.SceneManagement;
 public class GoInVolcano : MonoBehaviour
 {
     public int requiredStars;
+    public GameObject trigger;
+    public GameObject lava;
 
     // Update is called once per frame
     void Update()
     {
         if (PlayerController.allAbilities && GameManager.totalStars >= requiredStars)
         {
-            gameObject.SetActive(true);
+            if (trigger != null)
+            {
+                trigger.SetActive(true);
+            }
+            if (lava != null)
+            {
+                lava.SetActive(false);
+            }
         }
     }
 

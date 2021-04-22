@@ -33,45 +33,53 @@ public class Primitive : MonoBehaviour
 
     private void Patrolling()
     {
-        if (!walkPointSet)
-            SearchWalkPoint();
+        
+            if (!walkPointSet)
+                SearchWalkPoint();
 
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
+            if (walkPointSet)
+                agent.SetDestination(walkPoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
+            if (distanceToWalkPoint.magnitude < 1f)
+                walkPointSet = false;
+        
     }
 
     private void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        
+            float randomZ = Random.Range(-walkPointRange, walkPointRange);
+            float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+                walkPointSet = true;
+        
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+       
+            agent.SetDestination(player.position);
+        
     }
 
     private void Attack()
     {
-        agent.SetDestination(transform.position);
+        
+            agent.SetDestination(transform.position);
 
-        //transform.LookAt(player);
+            //transform.LookAt(player);
 
-        if (!alreadyAttacked)
-        {
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+            if (!alreadyAttacked)
+            {
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+        
     }
 
     private void ResetAttack()
@@ -81,22 +89,25 @@ public class Primitive : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check if player is in sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        
+            // Check if player is in sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange)
-            Patrolling();
-        if (playerInSightRange && !playerInAttackRange)
-            ChasePlayer();
-        if (playerInSightRange && playerInAttackRange)
-            Attack();
+          //  if (!playerInSightRange && !playerInAttackRange)
+            //    Patrolling();
+            if (playerInSightRange && !playerInAttackRange)
+                ChasePlayer();
+            if (playerInSightRange && playerInAttackRange)
+                Attack();
+        
+        
 
        
     }

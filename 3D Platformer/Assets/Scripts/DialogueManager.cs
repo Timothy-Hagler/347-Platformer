@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class DialogueManager : MonoBehaviour
     private int convoIndex;
 
     public static bool isInDialogue;
-
+    public float e_tSpeed;
+    public NavMeshAgent[] enemies;
 
 
     // Start is called before the first frame update
@@ -27,17 +29,26 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         player = FindObjectOfType<PlayerController>();
+        enemies = FindObjectsOfType<NavMeshAgent>();
+        
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         isInDialogue = true;
+        
         player.moveSpeed = 0f;
         animator.SetBool("isOpen", true);
 
         npcNameText.text = dialogue.name;
 
         sentences.Clear();
+
+        foreach(NavMeshAgent e in enemies)
+        {
+            if (e != null)
+                 e.speed = 0f;
+        }
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -67,6 +78,11 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("isOpen", false);
         isInDialogue = false;
         player.moveSpeed = player.t_moveSpeed;
+        foreach (NavMeshAgent e in enemies)
+        {
+            if (e != null)
+                 e.speed = e_tSpeed;
+        }
     }
 
     IEnumerator TypeSentence(string sentence)

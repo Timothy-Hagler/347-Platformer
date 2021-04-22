@@ -217,10 +217,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.F))
                     canInteract = true;
             }
-            
 
-            
-            
+            AllAbiltiesAvailable();
+
+
         }
     }
 
@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour
             glideButton.interactable = true;
         }
 
-        AllAbiltiesAvailable();
+        
 
     }
 
@@ -333,7 +333,10 @@ public class PlayerController : MonoBehaviour
     public void AllAbiltiesAvailable()
     {
         if (speed.speedAvailable && doubleJump.doubleJumpAvailabe && wallClimb.wallClimbAvailabe && glide.glideAvailable)
+        {
             allAbilities = true;
+            Debug.Log("All abilities");
+        }
     }
 
 

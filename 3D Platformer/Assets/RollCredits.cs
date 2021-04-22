@@ -16,7 +16,8 @@ public class RollCredits : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             canvas.SetActive(true);
-            music.Play("credits");
+           // music.Stop("Credits1");
+           // music.Play("credits");
         }
     }
 }

@@ -38,11 +38,9 @@ public class AnimationStateController : MonoBehaviour
          bool isWalking = animator.GetBool(isWalkingHash);
          bool isRunning = animator.GetBool(isRunningHash);
          bool isJumping = animator.GetBool(isJumpingHash);
-         bool isGliding = animator.GetBool(isGlidingHash);
          bool isWalkingLeft = animator.GetBool(isWalkingLeftHash);
          bool isWalkingRight = animator.GetBool(isWalkingRightHash);
          bool isWalkingBackwards = animator.GetBool(isWalkingBackwardsHash);
-         bool isSwimming = animator.GetBool(isSwimmingHash);
          bool forwardPressed = Input.GetKey("w");
          bool leftPressed = Input.GetKey("a");
          bool rightPressed = Input.GetKey("d");
@@ -136,18 +134,5 @@ public class AnimationStateController : MonoBehaviour
         }
     }
 
-    /*Animator animator;
-    float velocity = 0.0f;
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    private void Update()
-    {
-        bool forwardPressed = Input.GetKey("w");
-        bool jumpPressed = Input.GetKey("space");
-
-        
-    }*/
+    
 }
