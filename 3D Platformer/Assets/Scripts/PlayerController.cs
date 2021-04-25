@@ -304,6 +304,15 @@ public class PlayerController : MonoBehaviour
             doubleJump.doubleJumpActive = false;
             // ballRoll.changeMesh();
         }
+        if (ability == "none")
+        {
+            glide.glideActive = false;
+            wallClimb.SetWallClimbActive(false);
+            moveSpeed = 10f;
+            t_moveSpeed = moveSpeed;
+            speed.speedActive = false;
+            doubleJump.doubleJumpActive = false;
+        }
         
     }
 

@@ -6,10 +6,49 @@ public class Heart : MonoBehaviour
 {
 
     private HealthManager healthMan;
+    public Renderer rend;
+
+    public Material needHealth;
+    public Material noNeedHealth;
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
         healthMan = FindObjectOfType<HealthManager>(); 
+    }
+
+    private void Update()
+    {
+        if (healthMan.currentHealth == healthMan.maxHealth)
+        {
+            HeartOff();
+        }
+        else if (healthMan.currentHealth < healthMan.maxHealth)
+        {
+            HeartOn();
+        }
+
+        transform.Rotate(0, 0, 30 * Time.deltaTime);
+    }
+
+    public void HeartOn()
+    {
+        Heart[] hearts = FindObjectsOfType<Heart>();
+        foreach (Heart h in hearts)
+        {
+            h.rend.material = needHealth;
+        }
+    }
+
+    public void HeartOff()
+    {
+        Heart[] hearts = FindObjectsOfType<Heart>();
+        foreach (Heart h in hearts)
+        {
+            h.rend.material = noNeedHealth;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +57,7 @@ public class Heart : MonoBehaviour
         {
             if (healthMan.currentHealth < healthMan.maxHealth)
             {
+                
                 Debug.Log("Less than");
                 healthMan.HealPlayer(1);
                 Destroy(gameObject);

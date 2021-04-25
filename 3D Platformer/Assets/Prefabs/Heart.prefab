@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2961920710258541616}
   - component: {fileID: 3355289801676676090}
   - component: {fileID: 3355289801676676089}
+  - component: {fileID: -1527572077658895617}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -137,3 +138,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114b1deb86fc3f44189d2f089ae248bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rend: {fileID: 7600200448131303262}
+  needHealth: {fileID: 2100000, guid: 1c801f90d532bb84a9c817952dc48813, type: 2}
+  noNeedHealth: {fileID: 2100000, guid: b5187a7e882ed9e44b7e234360e4d52e, type: 2}
+  heartOn: 0
+--- !u!23 &-1527572077658895617
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472770443390819978}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b5187a7e882ed9e44b7e234360e4d52e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

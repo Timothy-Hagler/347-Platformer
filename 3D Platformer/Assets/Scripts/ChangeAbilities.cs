@@ -39,4 +39,9 @@ public class ChangeAbilities : MonoBehaviour
     {
         player.SetAbility("glide");
     }
+
+    public void UseNone()
+    {
+        player.SetAbility("none");
+    }
 }
