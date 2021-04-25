@@ -22,9 +22,7 @@ public class AttackBoss : MonoBehaviour
         {
             winBox.SetActive(true);
             Destroy(transform.parent.gameObject);
-        }
-
-        
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,27 +30,15 @@ public class AttackBoss : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             health -= 1;
-            Debug.Log(health);
-             
+            Debug.Log(health); 
             platforms[index].SetActive(false);
             if (index != 2)
             {
                 platforms[index + 1].SetActive(true);
                 index++;
             }
-            //player.velocity.x = Random.Range(0f, 30f);
-            player.velocity.y = 40f;
-            //player.velocity.z = Random.Range(0f, 20f);
-           // StartCoroutine("LaunchPlayer");
+             player.velocity.y = 40f;   
         }
     }
-    IEnumerable LaunchPlayer()
-    {
-        
-        player.velocity.x = 0f;
-        player.velocity.y = 0f;
-        player.velocity.z = 0f;
-        yield return null;
-        
-    }
+    
 }

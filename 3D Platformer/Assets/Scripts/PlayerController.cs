@@ -162,10 +162,15 @@ public class PlayerController : MonoBehaviour
                         sounds.Play("Jumpc");
                 }
 
-                velocity.y += gravity * Time.deltaTime;
-                controller.Move(velocity * Time.deltaTime);
+                if (Input.GetButtonUp("Jump") && isGliding)
+                {
+                    isGliding = false;
+                    gravity = -35f;
+                }
 
-
+                
+                    velocity.y += gravity * Time.deltaTime;
+                    controller.Move(velocity * Time.deltaTime);
             }
             else
             {
@@ -174,16 +179,6 @@ public class PlayerController : MonoBehaviour
             moveDirection.y = moveDirection.y + (gravity * Time.deltaTime);
 
             controller.Move(moveDirection * Time.deltaTime);
-
-
-            /*if (Input.GetKeyDown(KeyCode.G))
-                SetAbility("speed");
-            if (Input.GetKeyDown(KeyCode.H))
-                SetAbility("double jump");
-            if (Input.GetKeyDown(KeyCode.J))
-                SetAbility("wall climb");
-            if (Input.GetKeyDown(KeyCode.K))
-                SetAbility("glide");*/
 
             if (Input.GetKeyDown(KeyCode.Tab))
             {
@@ -335,7 +330,6 @@ public class PlayerController : MonoBehaviour
         if (speed.speedAvailable && doubleJump.doubleJumpAvailabe && wallClimb.wallClimbAvailabe && glide.glideAvailable)
         {
             allAbilities = true;
-            Debug.Log("All abilities");
         }
     }
 

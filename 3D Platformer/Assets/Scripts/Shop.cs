@@ -57,6 +57,12 @@ public class Shop : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Star");
             
         }
+
+        if (starsRemaining <= 0)
+        {
+            LeaveShop();
+            gameObject.SetActive(false);
+        }
     }
 
     public void LeaveShop()
