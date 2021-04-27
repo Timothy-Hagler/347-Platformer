@@ -10,13 +10,14 @@ public class Heart : MonoBehaviour
 
     public Material needHealth;
     public Material noNeedHealth;
-
+    public AudioManager pickUpSound;
    
 
     // Start is called before the first frame update
     void Start()
     {
-        healthMan = FindObjectOfType<HealthManager>(); 
+        healthMan = FindObjectOfType<HealthManager>();
+        pickUpSound = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
@@ -61,6 +62,7 @@ public class Heart : MonoBehaviour
                 Debug.Log("Less than");
                 healthMan.HealPlayer(1);
                 Destroy(gameObject);
+                pickUpSound.Play("Heal");
             }
             }
     }

@@ -44,7 +44,7 @@ public class StarGate : MonoBehaviour
 
     public void FreeAnimal()
     {
-        if (gm.currentStars >= requiredStars)
+        if (GameManager.currentStars >= requiredStars)
         {
             controller.AddAbility(ability);
             gm.removeStar(requiredStars);

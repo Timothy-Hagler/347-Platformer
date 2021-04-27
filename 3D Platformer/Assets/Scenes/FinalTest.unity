@@ -773,7 +773,7 @@ PrefabInstance:
     - target: {fileID: 2820291286493735594, guid: 3436722bd7581484c98a8f728e15fa0b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2820291286493735594, guid: 3436722bd7581484c98a8f728e15fa0b,
         type: 3}
@@ -4069,6 +4069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!114 &109638653 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5116692885619964843, guid: e8d85b274b8422e46a435d4e82e6ac34,
@@ -4803,7 +4804,7 @@ Transform:
   - {fileID: 588115776}
   - {fileID: 416883686}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &141608157
 BoxCollider:
@@ -5533,6 +5534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &219453935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5657,7 +5659,7 @@ Transform:
   - {fileID: 1102580778}
   - {fileID: 1168404996}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &245548924 stripped
 Transform:
@@ -6614,7 +6616,7 @@ PrefabInstance:
     - target: {fileID: 4322039628122372547, guid: 898802e2fbec93841bca575e035d371d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4322039628122372547, guid: 898802e2fbec93841bca575e035d371d,
         type: 3}
@@ -7063,7 +7065,7 @@ PrefabInstance:
     - target: {fileID: 851455999632801586, guid: deec5da44f462c34ba3ee34aaad25abd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 851455999632801586, guid: deec5da44f462c34ba3ee34aaad25abd,
         type: 3}
@@ -7165,6 +7167,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1785981871}
+    - target: {fileID: 4718143106209519171, guid: deec5da44f462c34ba3ee34aaad25abd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 616826903}
+    - target: {fileID: 4718143106209519171, guid: deec5da44f462c34ba3ee34aaad25abd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UseNone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deec5da44f462c34ba3ee34aaad25abd, type: 3}
 --- !u!43 &362736892
@@ -8575,6 +8587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &470837963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8914,6 +8927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &484174340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10195,7 +10209,7 @@ PrefabInstance:
     - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
         type: 3}
@@ -10222,10 +10236,70 @@ PrefabInstance:
       propertyPath: sounds.Array.data[6].clip
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7daf1e80009f171419388e8887d8e74a, type: 3}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[10].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: Hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 405d9d4fc01accc42be78c75be7ab8cc, type: 3}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[11].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[11].name
+      value: Heal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[12].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 98d1b54e28c683647aef8687c66ab4ea, type: 3}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[12].name
+      value: HitBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[12].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[10].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[11].volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674602101990287770, guid: 19ba4245344d4704bb39f4a4af93be4d,
+        type: 3}
+      propertyPath: sounds.Array.data[12].volume
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3674602101990287771, guid: 19ba4245344d4704bb39f4a4af93be4d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3674602101990287771, guid: 19ba4245344d4704bb39f4a4af93be4d,
         type: 3}
@@ -10892,6 +10966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &731574540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11700,7 +11775,7 @@ PrefabInstance:
     - target: {fileID: 344401014531757116, guid: 5858cafda17b894499c929cdb70928f6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 344401014531757116, guid: 5858cafda17b894499c929cdb70928f6,
         type: 3}
@@ -12215,6 +12290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &814748938
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12554,6 +12630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &835541356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13635,6 +13712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &908168074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45327,6 +45405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &957062218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46420,6 +46499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1031242748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55295,6 +55375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1102580773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59143,6 +59224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!1 &1168404989
 GameObject:
   m_ObjectHideFlags: 0
@@ -59178,6 +59260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1168404991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62537,6 +62620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!1 &1181329305
 GameObject:
   m_ObjectHideFlags: 0
@@ -62572,6 +62656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1181329307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67283,6 +67368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!1001 &1340249995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67293,7 +67379,7 @@ PrefabInstance:
     - target: {fileID: 6342234657341942085, guid: acea3425670981e458ab7bd5fa65e051,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6342234657341942085, guid: acea3425670981e458ab7bd5fa65e051,
         type: 3}
@@ -67432,7 +67518,7 @@ PrefabInstance:
     - target: {fileID: 7137486860526743287, guid: c5a02877a6f1cc74aad8e920e6756a10,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7137486860526743287, guid: c5a02877a6f1cc74aad8e920e6756a10,
         type: 3}
@@ -67748,7 +67834,7 @@ PrefabInstance:
     - target: {fileID: 3251976494228493714, guid: ed8ad797c43800d469f0ff443d7020b6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3251976494228493714, guid: ed8ad797c43800d469f0ff443d7020b6,
         type: 3}
@@ -75711,6 +75797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1465260697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84596,7 +84683,7 @@ PrefabInstance:
     - target: {fileID: 3713902523678135003, guid: 139fa7e93be23144ab552fdf1494c5fd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3713902523678135003, guid: 139fa7e93be23144ab552fdf1494c5fd,
         type: 3}
@@ -85190,7 +85277,7 @@ PrefabInstance:
     - target: {fileID: 5116692885619964844, guid: e8d85b274b8422e46a435d4e82e6ac34,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5116692885619964844, guid: e8d85b274b8422e46a435d4e82e6ac34,
         type: 3}
@@ -85549,7 +85636,7 @@ Transform:
   - {fileID: 1875106323}
   - {fileID: 245548924}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633887724
 GameObject:
@@ -88606,6 +88693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!43 &1655078588
 Mesh:
   m_ObjectHideFlags: 0
@@ -88804,6 +88892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1678949840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89928,6 +90017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1703250002
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90422,7 +90512,7 @@ PrefabInstance:
     - target: {fileID: 1732526333950651239, guid: cf47edd7cf90ba64db00d1d14f7b58c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1732526333950651239, guid: cf47edd7cf90ba64db00d1d14f7b58c9,
         type: 3}
@@ -90526,6 +90616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1746278919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91389,6 +91480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1805000480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91728,6 +91820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1817158388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92067,6 +92160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &1831241710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92474,7 +92568,7 @@ PrefabInstance:
     - target: {fileID: 5283734887054718441, guid: f491866a6d5c3ea4ab76d8d3ea7ba09e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5283734887054718441, guid: f491866a6d5c3ea4ab76d8d3ea7ba09e,
         type: 3}
@@ -96780,6 +96874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!1 &1993521184
 GameObject:
   m_ObjectHideFlags: 0
@@ -97219,6 +97314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &2005069314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97523,6 +97619,75 @@ Transform:
   m_Father: {fileID: 233204321}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 270.279, z: 0}
+--- !u!1001 &2014156276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2472770443390819978, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_Name
+      value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1410.6494
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 221.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -645.35974
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.51908016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.48016223
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.48016223
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.51908016
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 85.539
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961920710258541616, guid: 629fac0d79165844fa278765286e8c47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90.00001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 629fac0d79165844fa278765286e8c47, type: 3}
 --- !u!43 &2014545508
 Mesh:
   m_ObjectHideFlags: 0
@@ -97826,6 +97991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!65 &2033023689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99232,6 +99398,7 @@ MonoBehaviour:
   - {fileID: 915965687}
   player: {fileID: 0}
   winBox: {fileID: 291649004}
+  hitBossSound: {fileID: 0}
 --- !u!195 &640505944074482347
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -99494,6 +99661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageToGive: 1
+  hurtSound: {fileID: 0}
 --- !u!33 &640505944728690830
 MeshFilter:
   m_ObjectHideFlags: 0

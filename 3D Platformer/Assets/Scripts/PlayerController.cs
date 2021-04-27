@@ -272,6 +272,7 @@ public class PlayerController : MonoBehaviour
             //  ballRoll.resetMesh();
             wallClimb.SetWallClimbActive(false);
             glide.glideActive = false;
+
         }
         if (ability == "double jump" && doubleJump.doubleJumpAvailabe)
         {

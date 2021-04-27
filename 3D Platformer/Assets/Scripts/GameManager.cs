@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public int currentCoins;
-    public int currentStars;
-    public static int totalStars;
+    public static int currentCoins = 0;
+    public static int currentStars = 0;
+    public static int totalStars = 0;
 
     public Text coinText;
     public Text starText;
@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
 
 
 
-    public int totalCoins = 0;
-    public int worldStars = 0;
+    public static int totalCoins = 0;
+    public static int worldStars = 0;
     public CoinPickup[] allCOins;
     public StarPickup[] stars;
 
@@ -35,19 +35,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        allCOins = FindObjectsOfType<CoinPickup>();
-        stars = FindObjectsOfType<StarPickup>();
-        foreach(CoinPickup coin in allCOins)
-        {
-            totalCoins++;
-        }
-        Debug.Log(totalCoins + " total coins");
-        
-        foreach(StarPickup star in stars)
-        {
-            worldStars++;
-        }
-        Debug.Log(worldStars + " total stars");
+        coinText.text = "Coins: " + currentCoins;
+        starText.text = "Stars: " + currentStars;
+        totalStarText.text = "Total Stars: " + totalStars;
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ public class PlayerData
 
     public PlayerData(GameManager gm, PlayerController player)
     {
-        stars = gm.currentStars;
+        stars = GameManager.currentStars;
         health = gm.health.currentHealth;
 
         position = new float[3];

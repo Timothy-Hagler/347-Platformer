@@ -47,7 +47,7 @@ public class Shop : MonoBehaviour
 
     public void BuyStar()
     {
-        if (gm.currentCoins >= requiredCoins && starsRemaining > 0)
+        if (GameManager.currentCoins >= requiredCoins && starsRemaining > 0)
         {
             
             gm.AddCoin(-requiredCoins);

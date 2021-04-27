@@ -9,10 +9,12 @@ public class AttackBoss : MonoBehaviour
     private int index = 0;
     public PlayerController player;
     public GameObject winBox;
+    public AudioManager hitBossSound;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        hitBossSound = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class AttackBoss : MonoBehaviour
             {
                 platforms[index + 1].SetActive(true);
                 index++;
+                hitBossSound.Play("HitBoss");
             }
              player.velocity.y = 40f;   
         }

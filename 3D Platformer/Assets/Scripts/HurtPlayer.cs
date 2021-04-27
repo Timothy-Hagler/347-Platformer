@@ -6,11 +6,12 @@ public class HurtPlayer : MonoBehaviour
 {
 
     public int damageToGive = 1;
+    public AudioManager hurtSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        hurtSound = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class HurtPlayer : MonoBehaviour
             hitDirection = hitDirection.normalized;
 
             FindObjectOfType<HealthManager>().HurtPlayer(damageToGive, hitDirection);
-            
+            hurtSound.Play("Hurt");
         }
     }
 
@@ -41,6 +42,18 @@ public class HurtPlayer : MonoBehaviour
 
             FindObjectOfType<HealthManager>().HurtPlayer(damageToGive, hitDirection);
 
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Vector3 hitDirection = other.transform.position - transform.position;
+            hitDirection = hitDirection.normalized;
+
+            FindObjectOfType<HealthManager>().HurtPlayer(damageToGive, hitDirection);
+            hurtSound.Play("Hurt");
         }
     }
 }
