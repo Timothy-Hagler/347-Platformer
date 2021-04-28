@@ -28,7 +28,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        player.enableInteract = false;
+        
         if (other.tag.Equals("Player"))
         {
             canvas.SetActive(false);

@@ -32,7 +32,7 @@ public class AttackBoss : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             health -= 1;
-            Debug.Log(health); 
+
             platforms[index].SetActive(false);
             if (index != 2)
             {

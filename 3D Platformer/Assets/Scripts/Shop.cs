@@ -40,8 +40,7 @@ public class Shop : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            canvas.SetActive(false);
-            Cursor.visible = false;
+            LeaveShop();
         }
     }
 
